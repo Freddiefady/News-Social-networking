@@ -20,16 +20,20 @@ class SocialiteController extends Controller
     {
         try{
             $socialite = Socialite::driver($provider)->user();
+            $user_db = user::whereEmail($socialite->getEmail())->first();
 
-            $user = User::updateOrCreate([
-                'email'=>$socialite->getEmail(),
-            ],[
-                'google_id'=>$socialite->id,
+            if ($user_db) {
+                Auth::login($user_db);
+                return redirect()->route('frontend.dashboard.profile');
+            }
+
+            $username = $this->generateUniqueUserName($socialite->name);
+
+            $user = User::create([
                 'name'=>$socialite->name,
-                'username'=>Str::replace('' ,'' ,$socialite->name).time(),
+                'username'=>$username.time(),
                 'email'=>$socialite->email,
                 'email_verified_at'=>now(),
-                'phone'=>'updated',
                 'image'=>$socialite->avatar,
                 'status'=>1,
                 'country'=>'updated',
@@ -44,5 +48,15 @@ class SocialiteController extends Controller
         } catch(\Exception $e) {
             return redirect()->route('login');
         }
+    }
+
+    public function generateUniqueUserName($name)
+    {
+        $username = Str::slug($name);
+        $count = 1;
+        while (User::where('username', $username)->exists()) {
+            $userName = $username . $count++;
+        }
+        return $username;
     }
 }
