@@ -2094,3 +2094,38 @@ h2 {
         text-align: center;
     }
 }
+/* Button Google Login */
+.socials-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    left: 20%;
+    position: relative;
+}
+
+.socials-row img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.socials-row > a {
+    padding: 0.5rem;
+    border-radius: 10rem;
+    width: 65%;
+    min-height: 3rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--text);
+    padding: 0.5rem;
+    background: #dddddd;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.socials-row > a:hover {
+    background: #dddddd;
+}

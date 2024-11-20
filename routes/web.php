@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SocialiteController;
 use App\Http\Controllers\Frontend\Dashboard\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -92,3 +93,5 @@ Route::prefix('email')->name('verification.')->controller(VerificationController
 
 Auth::routes();
 
+Route::get('auth/{provider}/login', [SocialiteController::class, 'redirect'])->name('auth.google.redirect');
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'callback'])->name('auth.google.callback');

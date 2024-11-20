@@ -11,6 +11,7 @@
         "ichtrojan/laravel-otp": "^2.0",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
+        "laravel/socialite": "^5.16",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.5",
         "laraveldaily/laravel-charts": "^0.2.3",
@@ -39,7 +40,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/Http/helper.php"
+        ]
     },
     "scripts": {
         "post-autoload-dump": [

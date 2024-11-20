@@ -8,14 +8,15 @@ use App\Http\Controllers\Dashboard\Auth\LoginController;
 use App\Http\Controllers\Dashboard\Posts\PostController;
 use App\Http\Controllers\Dashboard\Users\UserController;
 use App\Http\Controllers\Dashboard\Admins\AdminController;
+use App\Http\Controllers\Dashboard\GeneralSearchController;
 use App\Http\Controllers\Dashboard\Contacts\ContactController;
 use App\Http\Controllers\Dashboard\Settings\SettingsController;
 use App\Http\Controllers\Dashboard\Auth\ResetPasswordController;
 use App\Http\Controllers\Dashboard\Auth\ForgetPasswordController;
 use App\Http\Controllers\Dashboard\Categories\CategoryController;
-use App\Http\Controllers\Dashboard\Notifications\NotificationsController;
+use App\Http\Controllers\Dashboard\Related\RelatedNewsController;
 use App\Http\Controllers\Dashboard\Authorization\AuthorizationController;
-use App\Http\Controllers\Dashboard\GeneralSearchController;
+use App\Http\Controllers\Dashboard\Notifications\NotificationsController;
 
 Route::group(['as'=>'dashboard.', 'prefix'=>'admin', 'middleware'=>['auth:admin','CheckAdminStatus']],
 function(){
@@ -34,6 +35,7 @@ function(){
         Route::get('/', 'index')->name('index');
         Route::post('/Update', 'update')->name('update');
     });
+    Route::resource('related', RelatedNewsController::class);
     // Admin Management
     Route::resource('admins', AdminController::class);
     Route::get('admins/toggle/status/{id}', [AdminController::class, 'toggleStatus'])->name('status.admins');

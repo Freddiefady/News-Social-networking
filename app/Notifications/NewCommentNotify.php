@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewCommentNotify extends Notification
+class NewCommentNotify extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -32,17 +32,6 @@ class NewCommentNotify extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     */
-    public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
-
-    /**
      * Get the array representation of the notification.
      *
      * @return array<string, mixed>
@@ -60,6 +49,7 @@ class NewCommentNotify extends Notification
             'user_id'=>$this->comment->user_id,
             'user_name'=>auth()->user()->name,
             'post_title'=>$this->post->title,
+            'post_slug'=>$this->post->slug,
             'comment'=>$this->comment->comment,
             'url'=>route('frontend.post.show', $this->post->slug),
         ];
@@ -71,6 +61,7 @@ class NewCommentNotify extends Notification
             'user_id'=>$this->comment->user_id,
             'user_name'=>auth()->user()->name,
             'post_title'=>$this->post->title,
+            'post_slug'=>$this->post->slug,
             'comment'=>$this->comment->comment,
             'url'=>route('frontend.post.show', $this->post->slug),
         ];

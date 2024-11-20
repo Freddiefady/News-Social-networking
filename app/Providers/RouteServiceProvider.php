@@ -47,5 +47,30 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
+
+        RateLimiter::for('login', function (Request $request) {
+            return Limit::perMinute(3)->by($request->ip())->response(function(){
+                return responseApi(null, 'you sent too many requests, Try again after 1 hour', 429);
+            });
+        });
+
+        RateLimiter::for('contact', function (Request $request) {
+            return Limit::perMinutes(60, 3)->by($request->ip())->response(function(){
+                return responseApi(null, 'you sent too many requests', 429);
+            });
+        });
+
+        RateLimiter::for('emailVerify', function (Request $request) {
+            return Limit::perDay(2)->by($request->ip())->response(function(){
+                return responseApi(null, 'you sent too many requests, Try again after 1 day', 429);
+            });
+        });
+
+        RateLimiter::for('addComment', function (Request $request) {
+            return Limit::perMinute(2)->by($request->ip())->response(function(){
+                return responseApi(null, 'you sent too many requests, Try again after 1 day', 429);
+            });
+        });
+
     }
 }

@@ -26,14 +26,13 @@ class ContactController extends Controller
         ]);
 
         $contact = Contact::create($request->except('_token'));
-        $admins = Admin::get();
-        Notification::send($admins, new NewContactNotify($contact));
-
         if(!$contact)
         {
             Session::flash('error', 'Your message has not received');
             return redirect()->back();
         }
+        $admins = Admin::get();
+        Notification::send($admins, new NewContactNotify($contact));
         Session::flash('success', 'Your message has been received');
         return redirect()->back();
     }

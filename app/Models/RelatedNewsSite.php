@@ -11,4 +11,11 @@ class RelatedNewsSite extends Model
 
     protected $table ='related_news';
     protected $fillable = ['name', 'url'];
+    public static function filterRequest()
+    {
+        return [
+            'name' => 'required|max:100|string',
+            'url' => 'required|url',
+        ];
+    }
 }
