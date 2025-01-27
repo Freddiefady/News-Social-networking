@@ -100,11 +100,11 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         $admin = Admin::findOrFail($id);
-        $admin->delete();
         if(!$admin)
         {
             return redirect()->back()->with('error', 'Invalid Try again');
         }
+        $admin->delete();
         Session::flash('success', 'Deleted Successfully');
         return redirect()->back();
     }

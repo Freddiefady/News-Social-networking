@@ -151,7 +151,7 @@ class PostController extends Controller
         if (!$image)
         {
             return response()->json([
-                'status'=>201,
+                'status'=>404,
                 'msg'=>'Image Not Found',
             ]);
         }

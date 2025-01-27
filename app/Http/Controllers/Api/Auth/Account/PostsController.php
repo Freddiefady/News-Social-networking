@@ -26,10 +26,10 @@ class PostsController extends Controller
         }
 
         $posts = $user->posts()->active()->activeCategory()->get();
-        if (!$posts) {
-            return responseApi(null, 'No posts found.', 404);
+        if ($posts->count() > 0) {
+            return responseApi(new PostsCollection($posts), 'Response posts data successfully', 200);
         }
-        return responseApi(new PostsCollection($posts), 'Response posts data successfully', 200);
+        return responseApi(null, 'No posts found.', 404);
     }
     public function store(PostRequest $request)
     {

@@ -14,7 +14,7 @@ class SettingsController extends Controller
     {
         $settings = Setting::first();
         if(!$settings){
-            return responseApi(new SettingsResoucres($settings), 'Not found Settings', 404);
+            return responseApi(null, 'Not found Settings', 404);
         }
         $data = [
             'settings' => new SettingsResoucres($settings),
@@ -26,8 +26,8 @@ class SettingsController extends Controller
     {
         $related = RelatedNewsSite::select('name', 'url')->get();
         if(!$related){
-            return responseApi($related, 'Not found related', 404);
+            return responseApi(null, 'Not found related', 404);
         }
-        return responseApi(['related-news'=>$related], 'Response data successfully', 200);
+        return $related;
     }
 }

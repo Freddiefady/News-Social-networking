@@ -1,20 +1,20 @@
 <?php
 
-use App\Http\Controllers\Api\Auth\Account\NotificationsContoller;
-use App\Http\Controllers\Api\Auth\Account\PostsController;
-use App\Http\Controllers\Api\Auth\Account\ProfileController;
-use App\Http\Controllers\Api\Auth\EmailVerifyController;
-use App\Http\Controllers\Api\Auth\LoginController;
-use App\Http\Controllers\Api\Auth\password\ForgetPasswordController;
-use App\Http\Controllers\Api\Auth\password\ResetPasswordController;
-use App\Http\Controllers\Api\Auth\RegistrationController;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\GeneralController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\SettingsController;
-use App\Http\Resources\UserResource;
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\EmailVerifyController;
+use App\Http\Controllers\Api\Auth\RegistrationController;
+use App\Http\Controllers\Api\Auth\Account\PostsController;
+use App\Http\Controllers\Api\Auth\Account\ProfileController;
+use App\Http\Controllers\Api\Auth\Account\NotificationsContoller;
+use App\Http\Controllers\Api\Auth\password\ResetPasswordController;
+use App\Http\Controllers\Api\Auth\password\ForgetPasswordController;
 
 /*
 |--------------------------------------------------------------------------
