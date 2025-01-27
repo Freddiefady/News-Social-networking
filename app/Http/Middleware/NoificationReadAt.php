@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class NoificationReadAt
@@ -17,7 +18,11 @@ class NoificationReadAt
     {
         if($request->query('notify'))
         {
-            $notification = auth()->user()->unreadNotifications->where('id',$request->query('notify'))->first();
+            if(Auth::guard('sanctum')->check()) {
+                $notification = auth('sanctum')->user()->unreadNotifications->where('id',$request->query('notify'))->first();
+            }else {
+                $notification = auth('web')->user()->unreadNotifications->where('id',$request->query('notify'))->first();
+            }
             if($notification)
             {
                 $notification->markAsRead();

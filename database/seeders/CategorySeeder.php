@@ -16,9 +16,9 @@ class CategorySeeder extends Seeder
     {
         $date = fake()->date('Y-m-d h:m:s');
         $data = [
-            'technology category',
-            'sports category',
-            'fashion category',
+            'Technology category',
+            'Sports category',
+            'Fashion category',
         ];
         foreach ($data as $item) {
             Category::create([

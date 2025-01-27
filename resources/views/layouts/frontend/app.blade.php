@@ -48,9 +48,10 @@
     <script>
         role = "user";
         userId = "{{auth()->user()->id}}";
+        routeShowPost = "{{route('frontend.post.show', ':slug')}}";
     </script>
     @endauth
-    <script src="{{ asset('build/assets/app-84615d0a.js') }}"></script>
+    <script src="{{ asset('build/assets/app-6757301e.js') }}"></script>
     <!-- Back to Top -->
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

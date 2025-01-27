@@ -41,11 +41,15 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="profile-image">Profile Image:</label>
-                <input type="file" name="image" id="profile-image" accept="image/*" />
+                <label for="profileImage">Profile Image:</label>
+                <input type="file" name="image" id="profileImage" accept="image/*" />
                 @error('image')
                     <strong class="text-danger">{{$message}}</strong>
                 @enderror
+            </div>
+            <div class="form-group">
+                <img src="{{ asset($user->image) }}" width="180px" alt="{{$user->username}}"
+                    id="profileImagePreview" class="img-thumbnail">
             </div>
             <div class="form-group">
                 <label for="country">Country:</label>
@@ -105,3 +109,18 @@
 <br>
 <!-- Dashboard End-->
 @endsection
+@push('scripts')
+<script>
+    $(document).on('change', '#profileImage', function(){
+        var file = $this.files[0];
+
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                $('#profileImagePreview').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+@endpush

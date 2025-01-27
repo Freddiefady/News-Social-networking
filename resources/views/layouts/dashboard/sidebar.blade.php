@@ -59,6 +59,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Settings:</h6>
                         <a class="collapse-item" href="{{route('dashboard.settings.index')}}">Settings</a>
+                        <a class="collapse-item" href="{{route('dashboard.related.index')}}">Related Links</a>
                     </div>
                 </div>
             </li>
@@ -121,6 +122,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom posts:</h6>
                         <a class="collapse-item" href="{{route('dashboard.posts.index')}}">View posts</a>
+                        <a class="collapse-item" href="{{route('dashboard.posts.create')}}">Create Posts</a>
                     </div>
                 </div>
             </li>

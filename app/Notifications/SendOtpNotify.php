@@ -8,17 +8,17 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class SendOtpNotify extends Notification
+class SendOtpNotify extends Notification implements ShouldQueue
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-
-    public function __construct(public Otp $otp)
+    public $otp;
+    public function __construct()
     {
-        // Constructor property promotion instance from appServiceProvider
+        $this->otp = new Otp();
     }
 
     /**

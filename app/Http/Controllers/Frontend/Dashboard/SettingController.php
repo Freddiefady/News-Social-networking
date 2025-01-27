@@ -22,7 +22,7 @@ class SettingController extends Controller
         $request->validated();
         // code to update user settings goes here
         $user = User::findOrFail(auth()->user()->id);
-        $user->update($request->except(['_token, image']));
+        $user->update($request->except(['_token','image']));
         ImageManager::UploadImages($request, $user, null);
 
         return redirect()->back()->with('success', 'User settings updated successfully');

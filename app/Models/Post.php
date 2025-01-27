@@ -56,4 +56,24 @@ class Post extends Model
     {
         $query->where('status', 1);
     }
+    public function scopeActiveUser($query)
+    {
+
+        $query->where(function ($query)
+        {
+            $query->whereHas('user', function($user){
+                $user->whereStatus(1);
+            })->orWhere('user_id', null);
+        });
+    }
+    public function scopeActiveCategory($query)
+    {
+        $query->whereHas('category', function($category){
+            $category->whereStatus(1);
+        });
+    }
+    public function status()
+    {
+        return $this->status == 1 ? 'Active' : 'Inactive';
+    }
 }

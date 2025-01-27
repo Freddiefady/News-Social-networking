@@ -24,6 +24,10 @@ class Category extends Model
     {
         $query->where('status', 1);
     }
+    public function status()
+    {
+        return $this->status == 1 ? 'Active' : 'Inactive';
+    }
     public function sluggable(): array
     {
         return [

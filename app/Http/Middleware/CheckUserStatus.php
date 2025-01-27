@@ -21,6 +21,12 @@ class CheckUserStatus
             //if user blocked
             return redirect()->route('frontend.wait');
         }
+        if(Auth::guard('sanctum')->check() && Auth::guard('sanctum')->user()->status== 0)
+        {
+            //if user blocked
+            auth('sanctum')->user()->currentAccessToken()->delete();
+            return responseApi(null, 'User blocked', 403);
+        }
         return $next($request);
     }
 }

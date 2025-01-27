@@ -42,7 +42,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::select('id', 'name')->get();
+        $categories = Category::active()->select('id', 'name')->get();
         return view('dashboard.posts.create', compact('categories'));
     }
 
@@ -151,7 +151,7 @@ class PostController extends Controller
         if (!$image)
         {
             return response()->json([
-                'status'=>201,
+                'status'=>404,
                 'msg'=>'Image Not Found',
             ]);
         }

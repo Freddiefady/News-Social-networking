@@ -45,6 +45,10 @@ class Admin extends Authenticatable
     {
         return 'admin.'.$this->id;
     }
+    public function status()
+    {
+        return $this->status == 1 ? 'Active' : 'Inactive';
+    }
 
     protected $fillable = [
         'name',

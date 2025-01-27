@@ -31,9 +31,6 @@ class UserSettingsRequest extends FormRequest
             'country'=>'required | string | min: 3| max: 15',
             'city'=>'required | string | min: 3| max: 15',
             'street'=>'required | min: 3| max: 15',
-            'current_password'=>'required',
-            'password'=>'required | confirmed',
-            'password_confirmation'=>'required',
         ];
     }
 }

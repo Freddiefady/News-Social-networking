@@ -2,9 +2,10 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\CheckAdminStatus;
 use App\Http\Middleware\CheckUserStatus;
+use App\Http\Middleware\CheckAdminStatus;
 use App\Http\Middleware\NoificationReadAt;
+use App\Http\Middleware\CheckEmailVerifyApi;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -69,6 +70,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'CheckUserStatus'=>CheckUserStatus::class,
-        'CheckAdminStatus'=>CheckAdminStatus::class
+        'CheckAdminStatus'=>CheckAdminStatus::class,
+        'checkEmailVerify'=>CheckEmailVerifyApi::class
     ];
 }

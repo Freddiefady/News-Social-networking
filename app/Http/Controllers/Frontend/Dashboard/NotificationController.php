@@ -15,9 +15,9 @@ class NotificationController extends Controller
     }
     public function show()
     {
-    auth()->user()->unreadNotifications->markAsRead();
-    Session::flash('success', 'Notification has been marked as read');
-    return redirect()->back();
+        auth()->user()->unreadNotifications->markAsRead();
+        Session::flash('success', 'Notification has been marked as read');
+        return redirect()->back();
     }
     public function destroyAll()
     {

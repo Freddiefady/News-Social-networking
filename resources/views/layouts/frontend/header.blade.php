@@ -98,7 +98,8 @@
                         <div id="push-notify">
                             <div class="dropdown-item d-flex justify-content-between align-items-center">
                                 <span>Post comment: {{ substr($notify->data['post_title'], 0, 9) }}..</span>
-                                <a href="{{$notify->data['url']}}?notify={{$notify->id}}"><i class="fa fa-eye"></i></a>
+                                <a href="{{ $notify->data['url'] }}?notify={{ $notify->id }}">
+                                    <i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                         @empty

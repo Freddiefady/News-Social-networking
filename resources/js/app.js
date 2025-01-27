@@ -3,10 +3,11 @@ import './bootstrap';
 if(role == "user")
 {
     window.Echo.private('users.' + userId).notification((event)=>{
+        let url = routeShowPost.replace(':slug', event.post_slug) + '?notify=' + event.id;
             $('#push-notify').prepend(`
                 <div class="dropdown-item d-flex justify-content-between align-items-center">
                     <span id="notify-count">Post comment: ${event.post_title.substring(0, 9)}..</span>
-                    <a href="${event.url}?notify=${event.id}"><i class="fa fa-eye"></i></a>
+                    <a href="${url}"><i class="fa fa-eye"></i></a>
                 </div>`);
                 count = Number($('#notify-count').text());
                 count++;
